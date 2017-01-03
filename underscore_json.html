@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welocme to the Store</title>
+<link rel="stylesheet" type="text/css" href="theme.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+</head>
+<body>
+<script type="text/html" id="main">
+  <div id="top"><a href="#">YOURSTORE.COM</a></div>
+  <div id="content">PAGE CONTAIN</div>
+  <div id="slide" class="animation Right">
+    <% _.each(datas, function(data) { %>
+      <h3 onclick="myFunction()"><%= data.close %></h3>
+      <p><%= data.tag %></p>
+      <div class="img_control">
+      <div class="sec1">
+         <img style="<%= data.img_style %>" src="<%= data.img1 %>">
+         <img style="<%= data.img_style %>" src="<%= data.img2 %>">
+         <h4><%= data.text1 %></h4>
+
+       </div>
+       <div class="sec2">
+         <img style="<%= data.img_style %>" src="<%= data.img3 %>">
+         <img style="<%= data.img_style %>" src="<%= data.img4 %>">
+         <h4><%= data.text2 %></h4>
+
+       </div>
+     </div>
+     <% }); %>
+   </div>
+</script>
+<script>
+  function myFunction() {
+  document.getElementById("slide").style = "display:none;";}
+</script>
+<script>
+var listofdata=[
+  {
+    close : "X",
+    tag  : "Are you looking for <b>'White dress'</b>?",
+    img_style: "width:400px;height:400px;",
+    img1 : "images/p1.jpg",
+    img2 : "images/r2.jpg",
+    text1 : "<b>Cotton stylish white dress</b><br><a href='#'>see more</a>",
+    img3 : "images/r1.jpg",
+    img4 : "images/r2.jpg",
+    text2 : "<b>Cotton stylish black dress</b><br><a href='#'>see more</a>"
+  }
+];
+var tmpl = _.template($("#main").html());
+var result = tmpl({datas : listofdata});
+$("body").html(result);
+</script>
+</body>
+</html>
